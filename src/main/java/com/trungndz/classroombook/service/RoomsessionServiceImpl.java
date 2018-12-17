@@ -37,4 +37,21 @@ public class RoomsessionServiceImpl implements RoomsessionService{
 		return roomsessionDAO.findAll();
 	}
 
+	@Override
+	public List<Object> viewHistory(Integer idEmp) {
+		// TODO Auto-generated method stub
+		return roomsessionDAO.viewHistory(idEmp);
+	}
+
+	@Override
+	public List<Object> getAll() {
+		// TODO Auto-generated method stub
+		return roomsessionDAO.getAll();
+	}
+	
+	@Override
+	public void create(Roomsession roomsession) {
+		roomsessionDAO.save(roomsession);
+	}
+
 }

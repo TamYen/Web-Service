@@ -21,28 +21,28 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Roomsession implements java.io.Serializable {
 
 	private RoomsessionId id;
-	private Employees employeesByCreator;
-	private Employees employeesBySubscriber;
-	private Employees employeesByApprover;
+	private Employee creator;
+	private Employee subscriber;
+	private Employee approver;
 	private Room room;
 	private Shiftsession shiftsession;
 
 	public Roomsession() {
 	}
 
-	public Roomsession(RoomsessionId id, Employees employeesByCreator, Room room, Shiftsession shiftsession) {
+	public Roomsession(RoomsessionId id, Employee creator, Room room, Shiftsession shiftsession) {
 		this.id = id;
-		this.employeesByCreator = employeesByCreator;
+		this.creator = creator;
 		this.room = room;
 		this.shiftsession = shiftsession;
 	}
 
-	public Roomsession(RoomsessionId id, Employees employeesByCreator, Employees employeesBySubscriber,
-			Employees employeesByApprover, Room room, Shiftsession shiftsession) {
+	public Roomsession(RoomsessionId id, Employee creator, Employee subscriber,
+			Employee approver, Room room, Shiftsession shiftsession) {
 		this.id = id;
-		this.employeesByCreator = employeesByCreator;
-		this.employeesBySubscriber = employeesBySubscriber;
-		this.employeesByApprover = employeesByApprover;
+		this.creator = creator;
+		this.subscriber = subscriber;
+		this.approver = approver;
 		this.room = room;
 		this.shiftsession = shiftsession;
 	}
@@ -63,34 +63,34 @@ public class Roomsession implements java.io.Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonBackReference
 	@JoinColumn(name = "creator", nullable = false)
-	public Employees getEmployeesByCreator() {
-		return this.employeesByCreator;
+	public Employee getcreator() {
+		return this.creator;
 	}
 
-	public void setEmployeesByCreator(Employees employeesByCreator) {
-		this.employeesByCreator = employeesByCreator;
+	public void setcreator(Employee creator) {
+		this.creator = creator;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonBackReference
 	@JoinColumn(name = "subscriber")
-	public Employees getEmployeesBySubscriber() {
-		return this.employeesBySubscriber;
+	public Employee getsubscriber() {
+		return this.subscriber;
 	}
 
-	public void setEmployeesBySubscriber(Employees employeesBySubscriber) {
-		this.employeesBySubscriber = employeesBySubscriber;
+	public void setsubscriber(Employee subscriber) {
+		this.subscriber = subscriber;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonBackReference
 	@JoinColumn(name = "approver")
-	public Employees getEmployeesByApprover() {
-		return this.employeesByApprover;
+	public Employee getapprover() {
+		return this.approver;
 	}
 
-	public void setEmployeesByApprover(Employees employeesByApprover) {
-		this.employeesByApprover = employeesByApprover;
+	public void setapprover(Employee approver) {
+		this.approver = approver;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

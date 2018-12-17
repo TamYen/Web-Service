@@ -1,8 +1,7 @@
 package com.trungndz.classroombook.entities;
 // Generated 14-Dec-2018 15:20:34 by Hibernate Tools 4.3.5.Final
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +20,7 @@ public class Position implements java.io.Serializable {
 
 	private int idposition;
 	private String position;
-	private Set<Employees> employeeses = new HashSet<Employees>(0);
+	private List<Employee> employees;
 
 	public Position() {
 	}
@@ -30,10 +29,10 @@ public class Position implements java.io.Serializable {
 		this.idposition = idposition;
 	}
 
-	public Position(int idposition, String position, Set<Employees> employeeses) {
+	public Position(int idposition, String position, List<Employee> employees) {
 		this.idposition = idposition;
 		this.position = position;
-		this.employeeses = employeeses;
+		this.employees = employees;
 	}
 
 	@Id
@@ -58,12 +57,13 @@ public class Position implements java.io.Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "position")
 	@JsonBackReference
-	public Set<Employees> getEmployeeses() {
-		return this.employeeses;
+	public List<Employee> getEmployees() {
+		return employees;
 	}
 
-	public void setEmployeeses(Set<Employees> employeeses) {
-		this.employeeses = employeeses;
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
 	}
+
 
 }

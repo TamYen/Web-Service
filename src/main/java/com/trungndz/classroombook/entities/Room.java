@@ -2,6 +2,7 @@ package com.trungndz.classroombook.entities;
 // Generated 14-Dec-2018 15:20:34 by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,8 +23,7 @@ public class Room implements java.io.Serializable {
 	private int idroom;
 	private String roomname;
 	private Integer seatamount;
-	private Set<Roomsession> roomsessions = new HashSet<Roomsession>(0);
-
+	private List<Roomsession> roomsessions;
 	public Room() {
 	}
 
@@ -31,7 +31,7 @@ public class Room implements java.io.Serializable {
 		this.idroom = idroom;
 	}
 
-	public Room(int idroom, String roomname, Integer seatamount, Set<Roomsession> roomsessions) {
+	public Room(int idroom, String roomname, Integer seatamount, List<Roomsession> roomsessions) {
 		this.idroom = idroom;
 		this.roomname = roomname;
 		this.seatamount = seatamount;
@@ -69,11 +69,11 @@ public class Room implements java.io.Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room")
 	@JsonBackReference
-	public Set<Roomsession> getRoomsessions() {
+	public List<Roomsession> getRoomsessions() {
 		return this.roomsessions;
 	}
 
-	public void setRoomsessions(Set<Roomsession> roomsessions) {
+	public void setRoomsessions(List<Roomsession> roomsessions) {
 		this.roomsessions = roomsessions;
 	}
 

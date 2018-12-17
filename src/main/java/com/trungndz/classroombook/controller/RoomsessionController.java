@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,11 +25,11 @@ public class RoomsessionController {
 	@Autowired
 	private RoomsessionService roomsessionService;
 	
-//	@GetMapping("available")
-//	public ResponseEntity<List<Roomsession>> getRoomsessionAvailable(){
-//		List<Roomsession> list =  (List<Roomsession>) roomsessionService.findAll();
-//		return new ResponseEntity<>(list, HttpStatus.OK);
-//	}
+	@GetMapping("available")
+	public ResponseEntity<List<Roomsession>> getRoomsessionAvailable(){
+		List<Roomsession> list =  (List<Roomsession>) roomsessionService.findAll();
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
 	
 	@GetMapping("available-ad")
 	public ResponseEntity<List<Object>> getRoomsessionAvailableAdmin(){
@@ -49,21 +51,39 @@ public class RoomsessionController {
 		try {
 			dateUtil = sdf1.parse(date);
 			
-			java.sql.Date sqlStartDate = new java.sql.Date(dateUtil.getTime()); 
+			java.sql.Date sqlDate = new java.sql.Date(dateUtil.getTime()); 
 			
-			List<Object> list = roomsessionService.searchRoomsessionByDateAndByShiftSession(sqlStartDate, shift);
+			List<Object> list = roomsessionService.searchRoomsessionByDateAndByShiftSession(sqlDate, shift);
 			return new ResponseEntity<List<Object>>(list, HttpStatus.OK);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}	
+//		Date d = Date.valueOf(dateformat);
+//		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);		
+	}
+	
+	@GetMapping("history/{user}")
+	public ResponseEntity<List<Object>> ViewHistory(@PathVariable("user") Integer idEmp){
+		List<Object> list = roomsessionService.viewHistory(idEmp);
+		if(list.isEmpty() || list == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-
-				
-//		Date d = Date.valueOf(dateformat);
-//		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		
+		return new ResponseEntity<List<Object>>(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("all")
+	public ResponseEntity<List<Object>> getAll(){
+		List<Object> list = roomsessionService.getAll();
+		return new ResponseEntity<List<Object>>(list, HttpStatus.OK);
+	}
+	
+	@PostMapping("create")
+	public ResponseEntity<Void> create(@RequestBody Roomsession roomsession) {
+		roomsessionService.create(roomsession);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }

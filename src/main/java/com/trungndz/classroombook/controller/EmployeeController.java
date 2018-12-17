@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.trungndz.classroombook.entities.Employees;
+import com.trungndz.classroombook.entities.Employee;
 import com.trungndz.classroombook.service.EmployeeService;
 
 
@@ -21,9 +21,15 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 	
 	@GetMapping("getall")
-	public ResponseEntity<List<Employees>> getAllEmp() {
-		List<Employees> empList = employeeService.getAllEmployees();
-		return new ResponseEntity<List<Employees>>(empList,HttpStatus.OK);
+	public ResponseEntity<List<Employee>> getAllEmp() {
+		List<Employee> empList = employeeService.getAllEmployees();
+		return new ResponseEntity<List<Employee>>(empList,HttpStatus.OK);
+	}
+	
+	@GetMapping("all")
+	public ResponseEntity<List<Employee>> getAll() {
+		List<Employee> empList = (List<Employee>) employeeService.findAll();
+		return new ResponseEntity<List<Employee>>(empList,HttpStatus.OK);
 	}
 
 }

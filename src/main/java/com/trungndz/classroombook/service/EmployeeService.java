@@ -2,21 +2,21 @@ package com.trungndz.classroombook.service;
 
 import java.util.List;
 
-import com.trungndz.classroombook.entities.Employees;
+import com.trungndz.classroombook.entities.Employee;
 
 
 public interface EmployeeService {
 		
-	Iterable<Employees> findAll();
+	Iterable<Employee> findAll();
 
-    List<Employees> search(String q);
+    List<Employee> search(String q);
 
-    Employees findOne(int id);
+    Employee findOne(int id);
 
-    void save(Employees contact);
+    void save(Employee contact);
 
     void delete(int id);
 
-	List<Employees> getAllEmployees();
+	List<Employee> getAllEmployees();
 
 }

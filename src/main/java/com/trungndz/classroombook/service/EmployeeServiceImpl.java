@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.trungndz.classroombook.DAO.EmployeeDAO;
-import com.trungndz.classroombook.entities.Employees;
+import com.trungndz.classroombook.entities.Employee;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService  {
@@ -15,30 +15,30 @@ public class EmployeeServiceImpl implements EmployeeService  {
 	private EmployeeDAO employeeDAO;
 
 	@Override
-	public Iterable<Employees> findAll() {
+	public Iterable<Employee> findAll() {
 		// TODO Auto-generated method stub
 		return employeeDAO.findAll();
 	}
 	
 	@Override
-	public List<Employees> getAllEmployees(){
+	public List<Employee> getAllEmployees(){
 		return employeeDAO.getAllEmployees();
 	}
 
 	@Override
-	public List<Employees> search(String q) {
+	public List<Employee> search(String q) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Employees findOne(int id) {
+	public Employee findOne(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void save(Employees contact) {
+	public void save(Employee contact) {
 		// TODO Auto-generated method stub
 		
 	}

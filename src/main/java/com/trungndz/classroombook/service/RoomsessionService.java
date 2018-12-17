@@ -20,4 +20,10 @@ public interface RoomsessionService {
 
 	List<Object> searchRoomsessionByDateAndByShiftSession(Date date, Integer idShift);
 
+	List<Object> viewHistory(Integer idEmp);
+
+	List<Object> getAll();
+
+	void create(Roomsession roomsession);
+
 }
