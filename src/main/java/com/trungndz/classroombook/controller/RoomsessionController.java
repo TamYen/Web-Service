@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.Controller;
 
 import com.trungndz.classroombook.entities.Employee;
 import com.trungndz.classroombook.entities.Position;
@@ -29,7 +30,8 @@ import com.trungndz.classroombook.service.RoomService;
 import com.trungndz.classroombook.service.RoomsessionService;
 import com.trungndz.classroombook.service.ShiftSessionService;
 
-@RestController
+//@RestController
+@Controller
 @RequestMapping("Roomsession")
 public class RoomsessionController {
 	
