@@ -1,7 +1,8 @@
 package com.trungndz.classroombook.entities;
 // Generated 14-Dec-2018 15:20:34 by Hibernate Tools 4.3.5.Final
 
-import java.util.Date;
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 

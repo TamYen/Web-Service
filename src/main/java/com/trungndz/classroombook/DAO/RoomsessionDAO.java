@@ -3,7 +3,6 @@ package com.trungndz.classroombook.DAO;
 import java.sql.Date;
 import java.util.List;
 
-import org.jboss.logging.Param;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -12,10 +11,15 @@ import com.trungndz.classroombook.entities.RoomsessionId;
 
 public interface RoomsessionDAO extends CrudRepository<Roomsession, RoomsessionId>{
 
-	@Query("SELECT r.room.roomname, r.shiftsession.idsession, r.id.date, r.creator.nameemp FROM Roomsession r")
+	@Query("SELECT r.room, r.shiftsession, r.id.date, r.creator, r.subscriber, r.approver FROM Roomsession r")
 	List<Object> getRoomsessionAvailableForAdmin();
 	
-	@Query("SELECT r.room.idroom, r.room.roomname, r.shiftsession.idsession, r.id.date "
+	@Query("SELECT r.id, r.creator, r.subscriber "
+			+ "FROM Roomsession r "
+			+ "WHERE r.approver IS NULL")
+	List<Object> getRoomsessionNonApproved();
+	
+	@Query("SELECT r.id "
 			+ "FROM Roomsession r "
 			+ "WHERE r.subscriber IS NULL")
 	List<Object> getRoomsessionAvailableForTeacher();
@@ -34,8 +38,8 @@ public interface RoomsessionDAO extends CrudRepository<Roomsession, RoomsessionI
 	List<Object> viewHistory(@org.springframework.data.repository.query.Param("idEmp") Integer idEmp);
 
 	
-	@Query("SELECT r.room.idroom, r.room.roomname, r.shiftsession.idsession, r.id.date, "
-			+ "r.creator.idemp, r.subscriber.idemp, r.approver.idemp FROM Roomsession r")
+	@Query("SELECT r.room, r.shiftsession, r.id.date, "
+			+ "r.creator, r.subscriber, r.approver FROM Roomsession r")
 	List<Object> getAll();
 
 	

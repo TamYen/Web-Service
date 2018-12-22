@@ -1,12 +1,14 @@
-package com.trungndz.classroombook.service;
+package com.trungndz.classroombook.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.trungndz.classroombook.DAO.EmployeeDAO;
 import com.trungndz.classroombook.entities.Employee;
+import com.trungndz.classroombook.service.EmployeeService;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService  {
@@ -32,9 +34,9 @@ public class EmployeeServiceImpl implements EmployeeService  {
 	}
 
 	@Override
-	public Employee findOne(int id) {
+	public Optional<Employee> findOne(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return employeeDAO.findById(id);
 	}
 
 	@Override

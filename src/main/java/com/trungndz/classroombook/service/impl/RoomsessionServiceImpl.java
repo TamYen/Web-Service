@@ -1,14 +1,16 @@
-package com.trungndz.classroombook.service;
+package com.trungndz.classroombook.service.impl;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.trungndz.classroombook.DAO.RoomsessionDAO;
 import com.trungndz.classroombook.entities.Roomsession;
+import com.trungndz.classroombook.entities.RoomsessionId;
+import com.trungndz.classroombook.service.RoomsessionService;
 
 
 @Service
@@ -54,4 +56,18 @@ public class RoomsessionServiceImpl implements RoomsessionService{
 		roomsessionDAO.save(roomsession);
 	}
 
+	@Override
+	public Optional<Roomsession> findById(RoomsessionId rid) {
+		return roomsessionDAO.findById(rid);
+	}
+
+	@Override
+	public void updateRoomSession(Roomsession rs) {
+		roomsessionDAO.save(rs);		
+	}
+	
+	@Override
+	public List<Object> getRoomSessionNonApproved(){
+		return roomsessionDAO.getRoomsessionNonApproved();
+	}
 }

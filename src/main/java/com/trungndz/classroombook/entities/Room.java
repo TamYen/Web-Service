@@ -24,6 +24,7 @@ public class Room implements java.io.Serializable {
 	private String roomname;
 	private Integer seatamount;
 	private List<Roomsession> roomsessions;
+	
 	public Room() {
 	}
 

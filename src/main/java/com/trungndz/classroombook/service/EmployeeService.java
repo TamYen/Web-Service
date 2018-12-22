@@ -1,6 +1,7 @@
 package com.trungndz.classroombook.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.trungndz.classroombook.entities.Employee;
 
@@ -11,7 +12,7 @@ public interface EmployeeService {
 
     List<Employee> search(String q);
 
-    Employee findOne(int id);
+    Optional<Employee> findOne(int id);
 
     void save(Employee contact);
 

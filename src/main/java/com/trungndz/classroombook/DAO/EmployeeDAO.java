@@ -9,7 +9,7 @@ import com.trungndz.classroombook.entities.Employee;
 
 public interface EmployeeDAO extends CrudRepository<Employee, Integer>{
 	
-	@Query("SELECT e.idemp, e.email, e.nameemp, e.position.position FROM Employee e")
+	@Query("SELECT e.idemp, e.email, e.nameemp, e.position FROM Employee e")
 	List<Employee> getAllEmployees();
 
 	

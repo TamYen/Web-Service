@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trungndz.classroombook.entities.Employee;
+import com.trungndz.classroombook.entities.Roomsession;
 import com.trungndz.classroombook.service.EmployeeService;
 
 

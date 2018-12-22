@@ -64,6 +64,13 @@ public class Position implements java.io.Serializable {
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
 	}
+	
+	public void addEmployee(Employee e) {
+		e.setPosition(this);
+	}
+	public void removeEmployee(Employee e) {
+		e.setPosition(null);
+	}
 
 
 }
