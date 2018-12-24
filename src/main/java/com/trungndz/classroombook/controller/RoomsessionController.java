@@ -187,11 +187,11 @@ public class RoomsessionController {
 			Shiftsession session = shiftSessionService.findById(idSession).get();
 			Employee subscriber = employeeService.findOne(idSub).get();
 			if(subscriber == null || room == null || session == null) {
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
 			Roomsession rs = roomsessionService.findById(rid).get();
 			if(rs == null) {
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
 			rs.setsubscriber(subscriber);
 			roomsessionService.updateRoomSession(rs);
@@ -199,10 +199,37 @@ public class RoomsessionController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}	
+	}
+	
+	@PutMapping("approve")
+	public ResponseEntity<?> updateApprover(@RequestParam("idRoom") int idRoom, @RequestParam("idSession") int idSession,
+			@RequestParam("date") String date, @RequestParam("idApprover") int idApprover){
+				
+		Date sqlDate;
+		try {
+			sqlDate = handle.parseStringToDateSql(date);
+			RoomsessionId rid = new RoomsessionId(idRoom, idSession, sqlDate);
+			Room room = roomService.findById(idRoom).get();
+			Shiftsession session = shiftSessionService.findById(idSession).get();
+			Employee approver = employeeService.findOne(idApprover).get();
+			if(approver == null || room == null || session == null) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+			Roomsession rs = roomsessionService.findById(rid).get();
+			if(rs == null) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+			rs.setsubscriber(approver);
+			roomsessionService.updateRoomSession(rs);
+			
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
 		
 	}
-
 }
