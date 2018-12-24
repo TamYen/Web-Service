@@ -32,4 +32,6 @@ public interface RoomsessionService {
 
 	List<Object> getRoomSessionNonApproved();
 
+	void deleteSubscribed(Roomsession rs);
+
 }

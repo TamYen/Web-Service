@@ -70,4 +70,9 @@ public class RoomsessionServiceImpl implements RoomsessionService{
 	public List<Object> getRoomSessionNonApproved(){
 		return roomsessionDAO.getRoomsessionNonApproved();
 	}
+	
+	@Override
+	public void deleteSubscribed(Roomsession rs) {
+		roomsessionDAO.delete(rs);
+	}
 }

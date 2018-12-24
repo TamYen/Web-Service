@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -229,7 +230,61 @@ public class RoomsessionController {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
-		
+	}
+	
+	@DeleteMapping("subscribe/delete")
+	public ResponseEntity<?> deleteSubscribeb(@RequestParam("idRoom") int idRoom, @RequestParam("idSession") int idSession,
+			@RequestParam("date") String date, @RequestParam("idSubscriber") int idSub){
+				
+		Date sqlDate;
+		try {
+			sqlDate = handle.parseStringToDateSql(date);
+			RoomsessionId rid = new RoomsessionId(idRoom, idSession, sqlDate);
+			Room room = roomService.findById(idRoom).get();
+			Shiftsession session = shiftSessionService.findById(idSession).get();
+			Employee subscriber = employeeService.findOne(idSub).get();
+			if(subscriber == null || room == null || session == null) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+			Roomsession rs = roomsessionService.findById(rid).get();
+			if(rs == null) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+//			rs.setsubscriber(subscriber);
+			roomsessionService.deleteSubscribed(rs);
+			
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}	
+	}
+	
+	@DeleteMapping("approve/delete")
+	public ResponseEntity<?> deleteApproved(@RequestParam("idRoom") int idRoom, @RequestParam("idSession") int idSession,
+			@RequestParam("date") String date, @RequestParam("idApprover") int idApprover){
+				
+		Date sqlDate;
+		try {
+			sqlDate = handle.parseStringToDateSql(date);
+			RoomsessionId rid = new RoomsessionId(idRoom, idSession, sqlDate);
+			Room room = roomService.findById(idRoom).get();
+			Shiftsession session = shiftSessionService.findById(idSession).get();
+			Employee approver = employeeService.findOne(idApprover).get();
+			if(approver == null || room == null || session == null) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+			Roomsession rs = roomsessionService.findById(rid).get();
+			if(rs == null) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+//			rs.setsubscriber(approver);
+			roomsessionService.deleteSubscribed(rs);
+			
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 	}
 }
