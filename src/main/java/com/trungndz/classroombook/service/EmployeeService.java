@@ -20,4 +20,6 @@ public interface EmployeeService {
 
 	List<Employee> getAllEmployees();
 
+	Object login(String email, int id);
+
 }

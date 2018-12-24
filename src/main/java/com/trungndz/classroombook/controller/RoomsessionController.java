@@ -3,6 +3,8 @@ package com.trungndz.classroombook.controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.trungndz.classroombook.entities.Employee;
 import com.trungndz.classroombook.entities.Position;
 import com.trungndz.classroombook.entities.Room;
+import com.trungndz.classroombook.entities.RoomAvailable;
 import com.trungndz.classroombook.entities.Roomsession;
 import com.trungndz.classroombook.entities.RoomsessionId;
 import com.trungndz.classroombook.entities.Shiftsession;
@@ -58,12 +61,24 @@ public class RoomsessionController {
 	@GetMapping("available-ad")
 	public ResponseEntity<List<Object>> getRoomsessionAvailableAdmin(){
 		List<Object> list =  roomsessionService.getRoomsessionAvailableForAdmin();
-		return new ResponseEntity<>(list, HttpStatus.OK);
+		return new ResponseEntity<List<Object>>(list, HttpStatus.OK);
 	}
 	
 	@GetMapping("available-teacher")
 	public ResponseEntity<List<Object>> getRoomsessionAvailableTearcher(){
 		List<Object> list =  roomsessionService.getRoomsessionAvailableForTeacher();
+		List<RoomAvailable> listRoom = new ArrayList<>();
+		
+		for(int i=0; i<list.size(); i++) {
+			RoomAvailable ra = new RoomAvailable();
+			System.out.println(list.get(i));
+//			ra.setIdroom(a);
+//			ra.setRoomname(list.get(i).getRoom().getRoomname());
+//			ra.setSession(list.get(i).getId().getIdsession());
+//			ra.setDate(list.get(i).getId().getDate());
+//			listRoom.add(ra);
+		}
+		
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	

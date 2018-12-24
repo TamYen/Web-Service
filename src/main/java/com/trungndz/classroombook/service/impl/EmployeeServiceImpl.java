@@ -50,5 +50,10 @@ public class EmployeeServiceImpl implements EmployeeService  {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public Object login(String email, int id) {
+		return employeeDAO.login(email, id);
+	}
 
 }
