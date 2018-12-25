@@ -1,5 +1,7 @@
 package com.trungndz.classroombook.service.impl;
 
+import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +21,16 @@ public class RoomServiceImpl implements RoomService{
 	@Override
 	public Optional<Room> findById(int id) {
 		return roomDAO.findById(id);
+	}
+	
+	@Override
+	public List<Integer> getRoomNotActiveByDateandBySession(Date date, int session){
+		return roomDAO.listRoom(date, session);
+	}
+
+	@Override
+	public List<Integer> getRoomActiveByDateandBySession(Date sqlDate, int session) {
+		// TODO Auto-generated method stub
+		return roomDAO.listRoomAvailable(sqlDate, session);
 	}
 }
