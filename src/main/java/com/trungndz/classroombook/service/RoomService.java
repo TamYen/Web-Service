@@ -12,6 +12,6 @@ public interface RoomService {
 
 	List<Integer> getRoomNotActiveByDateandBySession(Date date, int session);
 
-	List<Integer> getRoomActiveByDateandBySession(Date sqlDate, int session);
+	List<Object> getRoomActiveByDateandBySession(Date sqlDate, int session);
 
 }

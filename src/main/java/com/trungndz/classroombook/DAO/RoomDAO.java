@@ -14,7 +14,7 @@ public interface RoomDAO extends CrudRepository<Room, Integer>{
 	@Query("select r.id.idroom from Roomsession r where r.id.date = :date and r.id.idsession = :session")
 	List<Integer> listRoom(@Param("date") Date date, @Param("session")int session);
 	
-	@Query("SELECT r.idroom FROM Room r WHERE r.idroom Not in"
+	@Query("SELECT r.idroom, r.roomname, r.seatamount FROM Room r WHERE r.idroom Not in"
 			+ "(select rs.id.idroom from Roomsession rs where rs.id.date = :date and rs.id.idsession = :session)")
-	List<Integer> listRoomAvailable(@Param("date") Date date, @Param("session")int session);
+	List<Object> listRoomAvailable(@Param("date") Date date, @Param("session")int session);
 }

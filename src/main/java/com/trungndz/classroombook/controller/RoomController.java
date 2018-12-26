@@ -38,13 +38,13 @@ public class RoomController {
 	}
 	
 	@GetMapping("roomavailble")
-	public ResponseEntity<List<Integer>> getRoomNotActive(@RequestParam("date") String date, @RequestParam("session") int session){
+	public ResponseEntity<List<Object>> getRoomNotActive(@RequestParam("date") String date, @RequestParam("session") int session){
 		Handler h = new Handler();
 		Date sqlDate;
 		try {
 			sqlDate = h.parseStringToDateSql(date);
-			List<Integer> list = roomService.getRoomActiveByDateandBySession(sqlDate, session);
-			return new ResponseEntity<List<Integer>>(list, HttpStatus.OK);
+			List<Object> list = roomService.getRoomActiveByDateandBySession(sqlDate, session);
+			return new ResponseEntity<List<Object>>(list, HttpStatus.OK);
 
 		}catch(ParseException e) {
 			e.printStackTrace();

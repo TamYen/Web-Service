@@ -29,7 +29,7 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 	@Override
-	public List<Integer> getRoomActiveByDateandBySession(Date sqlDate, int session) {
+	public List<Object> getRoomActiveByDateandBySession(Date sqlDate, int session) {
 		// TODO Auto-generated method stub
 		return roomDAO.listRoomAvailable(sqlDate, session);
 	}
