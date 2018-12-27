@@ -52,7 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService  {
 	}
 	
 	@Override
-	public Object login(String email, int id) {
+	public List<Object> login(String email, int id) {
 		return employeeDAO.login(email, id);
 	}
 

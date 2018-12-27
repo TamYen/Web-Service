@@ -15,7 +15,7 @@ public interface EmployeeDAO extends CrudRepository<Employee, Integer>{
 	
 	
 	@Query("SELECT e.idemp, e.email, e.nameemp, e.position.position FROM Employee e WHERE e.email = :email and e.id = :id")
-	Object login(@Param("email") String email, @Param("id") int id);
+	List<Object> login(@Param("email") String email, @Param("id") int id);
 	
 	
 }

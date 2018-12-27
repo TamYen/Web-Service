@@ -36,12 +36,12 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("login")
-	public ResponseEntity<Object> login(@RequestParam("email") String email, @RequestParam("id") int id){
-		Object e = employeeService.login(email, id);
+	public ResponseEntity<List<Object>> login(@RequestParam("email") String email, @RequestParam("id") int id){
+		List<Object> e = employeeService.login(email, id);
 		if(e == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(e, HttpStatus.OK);
+		return new ResponseEntity<List<Object>>(e, HttpStatus.OK);
 	}
 
 }
