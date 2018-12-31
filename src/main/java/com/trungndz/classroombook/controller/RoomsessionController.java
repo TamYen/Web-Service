@@ -195,6 +195,7 @@ public class RoomsessionController {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
 			rs.setsubscriber(subscriber);
+			rs.setapprover(null);
 			roomsessionService.updateRoomSession(rs);
 			
 			return new ResponseEntity<>(HttpStatus.OK);
@@ -232,6 +233,7 @@ public class RoomsessionController {
 		}
 	}
 	
+	// teacher xoa dang ky, xoa subscriber 
 	@DeleteMapping("subscribe/delete")
 	public ResponseEntity<?> deleteSubscribeb(@RequestParam("idRoom") int idRoom, @RequestParam("idSession") int idSession,
 			@RequestParam("date") String date, @RequestParam("idSubscriber") int idSub){
@@ -250,8 +252,8 @@ public class RoomsessionController {
 			if(rs == null) {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
-//			rs.setsubscriber(subscriber);
-			roomsessionService.deleteSubscribed(rs);
+			rs.setsubscriber(null);
+			roomsessionService.updateRoomSession(rs);
 			
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (ParseException e) {
@@ -260,6 +262,7 @@ public class RoomsessionController {
 		}	
 	}
 	
+	// admin xoa duyet
 	@DeleteMapping("approve/delete")
 	public ResponseEntity<?> deleteApproved(@RequestParam("idRoom") int idRoom, @RequestParam("idSession") int idSession,
 			@RequestParam("date") String date, @RequestParam("idApprover") int idApprover){
@@ -278,8 +281,9 @@ public class RoomsessionController {
 			if(rs == null) {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
-//			rs.setsubscriber(approver);
-			roomsessionService.deleteSubscribed(rs);
+			rs.setsubscriber(null);
+			rs.setapprover(null);
+			roomsessionService.updateRoomSession(rs);
 			
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (ParseException e) {
