@@ -222,7 +222,7 @@ public class RoomsessionController {
 			if(rs == null) {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
-			rs.setsubscriber(approver);
+			rs.setapprover(approver);
 			roomsessionService.updateRoomSession(rs);
 			
 			return new ResponseEntity<>(HttpStatus.OK);
