@@ -234,7 +234,7 @@ public class RoomsessionController {
 	}
 	
 	// teacher xoa dang ky, xoa subscriber 
-	@DeleteMapping("subscribe/delete")
+	@PutMapping("subscribe/delete")
 	public ResponseEntity<?> deleteSubscribeb(@RequestParam("idRoom") int idRoom, @RequestParam("idSession") int idSession,
 			@RequestParam("date") String date, @RequestParam("idSubscriber") int idSub){
 				
@@ -263,7 +263,7 @@ public class RoomsessionController {
 	}
 	
 	// admin xoa duyet
-	@DeleteMapping("approve/delete")
+	@PutMapping("approve/delete")
 	public ResponseEntity<?> deleteApproved(@RequestParam("idRoom") int idRoom, @RequestParam("idSession") int idSession,
 			@RequestParam("date") String date, @RequestParam("idApprover") int idApprover){
 				
