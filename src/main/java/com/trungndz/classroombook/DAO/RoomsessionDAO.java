@@ -16,7 +16,7 @@ public interface RoomsessionDAO extends CrudRepository<Roomsession, RoomsessionI
 	
 	@Query("SELECT r.room.idroom, r.room.roomname, r.shiftsession.idsession, r.id.date, r.subscriber.idemp, r.subscriber.nameemp "
 			+ "FROM Roomsession r "
-			+ "WHERE r.approver IS NULL AND r.creator IS not NULL"
+			+ "WHERE r.approver IS NULL AND r.creator IS not NULL "
 	      		+ "ORDER By r.id.date")
 	List<Object> getRoomsessionNonApproved();
 	
