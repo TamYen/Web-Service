@@ -14,7 +14,7 @@ public interface RoomsessionService {
 
 	Iterable<Roomsession> findAll();
 
-	List<Object> getRoomsessionAvailableForAdmin();
+	List<Object> getRoomsessionAvailableForAdmin(int idCreator);
 	
 	List<Object> getRoomsessionAvailableForTeacher();
 
@@ -33,5 +33,7 @@ public interface RoomsessionService {
 	List<Object> getRoomSessionNonApproved();
 
 	void deleteSubscribed(Roomsession rs);
+
+	List<Object> getRoomsessionApproved(int idApprover);
 
 }

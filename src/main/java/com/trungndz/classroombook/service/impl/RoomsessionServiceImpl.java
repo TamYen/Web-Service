@@ -20,8 +20,8 @@ public class RoomsessionServiceImpl implements RoomsessionService{
 	private RoomsessionDAO roomsessionDAO;
 	
 	@Override
-	public List<Object> getRoomsessionAvailableForAdmin(){
-		return roomsessionDAO.getRoomsessionAvailableForAdmin();
+	public List<Object> getRoomsessionAvailableForAdmin(int idCreator){
+		return roomsessionDAO.getRoomsessionAvailableForAdmin(idCreator);
 	}
 	
 	@Override
@@ -69,6 +69,11 @@ public class RoomsessionServiceImpl implements RoomsessionService{
 	@Override
 	public List<Object> getRoomSessionNonApproved(){
 		return roomsessionDAO.getRoomsessionNonApproved();
+	}
+	
+	@Override
+	public List<Object> getRoomsessionApproved(int idApprover){
+		return roomsessionDAO.getRoomsessionApproved(idApprover);
 	}
 	
 	@Override

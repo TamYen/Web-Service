@@ -60,8 +60,8 @@ public class RoomsessionController {
 	}
 	
 	@GetMapping("available-ad")
-	public ResponseEntity<List<Object>> getRoomsessionAvailableAdmin(){
-		List<Object> list =  roomsessionService.getRoomsessionAvailableForAdmin();
+	public ResponseEntity<List<Object>> getRoomsessionAvailableAdmin(@RequestParam("idCreator") int idCreator){
+		List<Object> list =  roomsessionService.getRoomsessionAvailableForAdmin(idCreator);
 		return new ResponseEntity<List<Object>>(list, HttpStatus.OK);
 	}
 	
@@ -117,6 +117,16 @@ public class RoomsessionController {
 	@GetMapping("nonapproved")
 	public ResponseEntity<List<Object>> getRoomSessionNonApproved(){
 		List<Object> list = roomsessionService.getRoomSessionNonApproved();
+		if(list.isEmpty() || list == null) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		
+		return new ResponseEntity<List<Object>>(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("approved")
+	public ResponseEntity<List<Object>> getRoomSessionApproved(@RequestParam("idApprover") int idApprover){
+		List<Object> list = roomsessionService.getRoomsessionApproved(idApprover);
 		if(list.isEmpty() || list == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
