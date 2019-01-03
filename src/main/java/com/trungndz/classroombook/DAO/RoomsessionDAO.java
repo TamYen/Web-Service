@@ -17,7 +17,7 @@ public interface RoomsessionDAO extends CrudRepository<Roomsession, RoomsessionI
 	@Query("SELECT r.room.idroom, r.room.roomname, r.shiftsession.idsession, r.id.date, r.subscriber.idemp, r.subscriber.nameemp "
 			+ "FROM Roomsession r "
 			+ "WHERE r.approver IS NULL AND r.creator IS not NULL "
-	      		+ "ORDER By r.id.date")
+	      		+ "ORDER By r.id.date ASC")
 	List<Object> getRoomsessionNonApproved();
 	
 //	@Query("SELECT r.id.date, r.id.idsession, r.id.idroom, r.room.roomname, r.room.seatamount  "
@@ -27,11 +27,13 @@ public interface RoomsessionDAO extends CrudRepository<Roomsession, RoomsessionI
 //	+ "FROM Roomsession r "
 //	+ "WHERE r.subscriber IS NULL")
 //	@Query("SELECT r.id, r.room, r.shiftsession FROM Roomsession r where r.subscriber IS NULL and r.approver IS NULL")
-	@Query("SELECT r.room.idroom, r.room.roomname, r.shiftsession.idsession, r.id.date FROM Roomsession r where r.subscriber IS NULL and r.approver IS NULL")
+	@Query("SELECT r.room.idroom, r.room.roomname, r.shiftsession.idsession, r.id.date FROM Roomsession r where r.subscriber IS NULL and r.approver IS NULL "
+			+ "ORDER By r.id.date ASC")
 	List<Object> getRoomsessionAvailableForTeacher(); // room no subscriber
 	
 	@Query("SELECT r.room.idroom, r.room.roomname, r.shiftsession.idsession, r.id.date FROM Roomsession r "
-			+ "WHERE r.id.date = :date  AND r.shiftsession.idsession = :shift AND r.subscriber IS NULL AND r.approver IS NULL")
+			+ "WHERE r.id.date = :date  AND r.shiftsession.idsession = :shift AND r.subscriber IS NULL AND r.approver IS NULL "
+			+ "ORDER By r.id.date ASC")
 	List<Object> searchRoomsessionByDateAndByShiftSession(@org.springframework.data.repository.query.Param("date") Date date,
 														  @org.springframework.data.repository.query.Param("shift") Integer idShift);
 
