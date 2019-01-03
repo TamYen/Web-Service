@@ -13,7 +13,7 @@ import com.trungndz.classroombook.entities.RoomsessionId;
 public interface RoomsessionDAO extends CrudRepository<Roomsession, RoomsessionId>{
 
 	@Query("SELECT r.room.idroom, r.room.roomname, r.shiftsession.idsession, r.id.date FROM Roomsession r "
-			+ "where r.subscriber IS NULL and r.approver.idemp = :idEmp "
+			+ "where r.subscriber IS NULL and r.creator.idemp = :idEmp "
 			+ "ORDER By r.id.date DESC")
 	List<Object> getRoomsessionAvailableForAdmin(@Param("idEmp") int idCreator);
 	
