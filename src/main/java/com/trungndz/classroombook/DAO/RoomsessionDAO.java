@@ -40,7 +40,7 @@ public interface RoomsessionDAO extends CrudRepository<Roomsession, RoomsessionI
 //	List<Object> viewHistory(Integer idEmp);
 
 	@Query("SELECT r.room.idroom, r.room.roomname, r.shiftsession.idsession, r.id.date, r.subscriber.nameemp"
-			+ " FROM Roomsession r WHERE r.subscriber.idemp = :idEmp")
+			+ " FROM Roomsession r WHERE r.subscriber.idemp = :idEmp ORDER BY r.id.date DESC")
 	List<Object> viewHistory(@org.springframework.data.repository.query.Param("idEmp") Integer idEmp);
 
 	
