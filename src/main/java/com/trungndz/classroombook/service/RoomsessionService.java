@@ -36,4 +36,6 @@ public interface RoomsessionService {
 
 	List<Object> getRoomsessionApproved(int idApprover);
 
+	void deleteRoomsession(Roomsession rs);
+
 }

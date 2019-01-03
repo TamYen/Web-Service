@@ -80,4 +80,9 @@ public class RoomsessionServiceImpl implements RoomsessionService{
 	public void deleteSubscribed(Roomsession rs) {
 		roomsessionDAO.delete(rs);
 	}
+	
+	@Override
+	public void deleteRoomsession(Roomsession rs) {
+		roomsessionDAO.delete(rs);
+	}
 }
